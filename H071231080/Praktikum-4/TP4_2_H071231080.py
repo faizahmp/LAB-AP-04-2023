@@ -1,5 +1,5 @@
 def palindrom(kata: str)-> str:
-    kata = kata.lower().replace(" ", "")#mengubah kapital , menghapus spasi
+    kata = kata.lower().replace(" ", "")
     
     if kata == kata [::-1]:
         return "Palindrom"

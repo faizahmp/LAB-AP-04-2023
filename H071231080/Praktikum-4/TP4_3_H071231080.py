@@ -7,8 +7,6 @@ def maksimum_angka (*angka):
     
     return angka_terbesar
 
-angka_string = input("Masukkan Angka = ").split() #bentukan inputan spasi
+angka_string = input("Masukkan Angka = ").split() 
 daftarAngka = maksimum_angka(*angka_string)
 print(f">> {daftarAngka}")
-
-

@@ -1,7 +1,7 @@
 try:
     def stringPermutation(kata):
         permutasi = []
-        for i in range(len(kata)):#panjang kata
+        for i in range(len(kata)):
             kata = kata[-1] + kata[:-1]
             permutasi.append(kata)
 
@@ -9,9 +9,9 @@ try:
 
     kata = input("Masukkan Kata = ")
 
-    if kata.isdigit(): # selain string error
+    if kata.isdigit(): 
         raise TypeError
-    
+
     hasilPermutasi = stringPermutation(kata)
 
     for hasil in hasilPermutasi:
@@ -19,5 +19,3 @@ try:
 
 except TypeError:
     print("Error, Inputan harus berupa string!")
-except:
-    print("Error, Inputan Valid")
