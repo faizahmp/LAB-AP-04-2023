@@ -26,6 +26,6 @@ while True:
 
         print(f'{jam:02.0f}:{menit:02.0f}:{detik:02.0f}\n')
 
-    except KeyboardInterrupt:
+    except ValueError:
         print('EOF')
         break
