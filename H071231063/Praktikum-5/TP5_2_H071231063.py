@@ -1,18 +1,10 @@
 def create_new_string(input_string):
-    length = len(input_string)
-
-    # Pastikan panjang string cukup untuk mengambil karakter pertama, tengah, dan terakhir
-    if length < 3:
+    panjang = len(input_string)
+    if panjang < 3:
         return "Panjang string tidak mencukupi"
-
-    middle_index = length // 2
-
-    # Ambil karakter pertama, tengah, dan terakhir
+    middle_index = panjang // 2
     new_string = input_string[0] + input_string[middle_index] + input_string[-1]
-
     return new_string
-
-# Contoh penggunaan
-input_string = input()
+input_string = input("Masukkan kata: ")
 new_string = create_new_string(input_string)
 print(new_string)
