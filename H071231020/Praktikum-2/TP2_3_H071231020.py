@@ -53,24 +53,3 @@ match gol:
             print('data tidak valid')
     case _:
         print('data tidak valid')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
