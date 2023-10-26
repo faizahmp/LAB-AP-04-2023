@@ -3,7 +3,7 @@ import random
 import datetime
 def generate_transaction_id(cashier_name):
     now = datetime.datetime.now()
-    upper_name= cashier_name[0]+cashier_name[len(cashier_name)//2]+cashier_name[-1]
+    upper_name = cashier_name[0] + cashier_name[len(cashier_name) // 2] + cashier_name[-1]
     transaction_id = f"{upper_name.upper()}{now.strftime('%y%m%d%H%M')}{random.randint(100, 999)}"
     return transaction_id
 def print_invoice(transaction_id, cashier_name, products):
@@ -11,30 +11,30 @@ def print_invoice(transaction_id, cashier_name, products):
     with open(invoice_filename, "w") as invoice_file:
         total_amount = 0
         now = datetime.datetime.now()
-        Toko = 'Toko'+ cashier_name.upper()
-        invoice_file.write(f"{(Toko.center(50))}\n")
+        toko = f'Toko {cashier_name.upper()}'
+        invoice_file.write("\n"f"{toko.center(60)}\n")
         invoice_file.write("\n")
-        invoice_file.write(f"{'='*60}\n")
+        invoice_file.write('=' * 60 + '\n')
         invoice_file.write(f"{'Kasir          : ' + cashier_name}\n")
         invoice_file.write(f"{'Waktu transaksi: ' + now.strftime('%d/%m/%y %H:%M')}\n")
-        invoice_file.write(f"{'='*60}\n")
+        invoice_file.write('=' * 60 + '\n')
         invoice_file.write("\n")
-        invoice_file.write(f"{'Daftar Produk'.center(50)}\n")
+        invoice_file.write(f"{'Daftar Produk'.center(60)}\n")
         invoice_file.write("\n")
-        invoice_file.write(f"  {'='*55}\n")
-        invoice_file.write(f"  |{'Nama Produk'.ljust(20)}|{'Harga'.rjust(10)}|{'Jumlah'.rjust(10)}|{'Total'.rjust(10)}|\n")
-        invoice_file.write(f"  {'='*55}\n")
+        invoice_file.write('  ' + '=' * 55 + '\n')
+        invoice_file.write('  |' + 'Nama Produk'.ljust(20) + '|' + 'Harga'.rjust(10) + '|' + 'Jumlah'.rjust(10) + '|' + 'Total'.rjust(10) + '|\n')
+        invoice_file.write('  ' + '=' * 55 + '\n')   
         for product in products:
             product_name, price, quantity = product
             total_price = price * quantity
             total_amount += total_price
-            invoice_file.write(f"  |{product_name:<20}|Rp.{price:>7}|{quantity:>10}|Rp.{total_price:>7}|\n")
-        invoice_file.write(f"  {'='*55}\n")
-        invoice_file.write(f"  |{'TOTAL:':<42}|Rp.{total_amount:>7}|\n")
-        invoice_file.write(f"  {'='*55}\n")
-        invoice_file.write(f"{'='*60}\n")
-        invoice_file.write(f"{'TERIMA KASIH TELAH BERBELANJA':^60}\n")
-        invoice_file.write("=" * 60)
+            invoice_file.write(f"  |{product_name.ljust(20)}|Rp.{str(price).rjust(7)}|{str(quantity).rjust(10)}|Rp.{str(total_price).rjust(7)}|\n")        
+        invoice_file.write('  ' + '=' * 55 + '\n')
+        invoice_file.write(f"  |{'TOTALv'.ljust(42)}|Rp.{str(total_amount).rjust(7)}|\n")
+        invoice_file.write('  ' + '=' * 55 + '\n')
+        invoice_file.write('=' * 60 + '\n')
+        invoice_file.write(f"{'TERIMA KASIH TELAH BERBELANJA'.center(60)}\n")
+        invoice_file.write('=' * 60)
     return invoice_filename
 def search_invoice_by_id(transaction_id):
     invoice_filename = f"invoices/{transaction_id}.txt"
@@ -46,17 +46,17 @@ def search_invoice_by_id(transaction_id):
         return "Invoice tidak ditemukan."
 def record_transaction_history(transaction_id, total_amount):
     now = datetime.datetime.now()
-    history_entry = f"|{now.strftime('%d/%m/%y %H:%M')} | {transaction_id:>15}|Rp.{total_amount:>14}|\n"
-    if not os.path.exists(f"trx_history.txt"):
+    history_entry = f"|{now.strftime('%d/%m/%y %H:%M')} | {transaction_id.rjust(15)}|Rp.{str(total_amount).rjust(14)}|\n"
+    if not os.path.exists("trx_history.txt"):
         with open("trx_history.txt", "w") as history_file:
-            history_file.write(f"{'='*53}\n")
-            history_file.write( f"|{'RIWAYAT TRANSAKSI':^51}|\n")
-            history_file.write(f"{'='*53}\n")
-            history_file.write(f"|{'Waktu':<15}|{'ID Trandsaksi':>17}|{'Nominal Transaksi':>15}|\n")        
-            history_file.write(f"{'='*53}\n")        
+            history_file.write('=' * 53 + '\n')
+            history_file.write(f"|{'RIWAYAT TRANSAKSI'.center(51)}|\n")
+            history_file.write('=' * 53 + '\n')
+            history_file.write(f"|{'Waktu'.ljust(15)}|{'ID Transaksi'.rjust(17)}|{'Nominal Transaksi'.rjust(15)}|\n")
+            history_file.write('=' * 53 + '\n')
     with open("trx_history.txt", "a") as history_file:
         history_file.write(history_entry)
-        history_file.write(f"{'='*53}\n")        
+        history_file.write('=' * 53 + '\n')
 if __name__ == "__main__":
     if not os.path.exists("invoices"):
         os.makedirs("invoices")
