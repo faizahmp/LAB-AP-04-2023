@@ -1,12 +1,10 @@
 import re
-
 def is_valid_username(username):
     pattern = r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{5,20}$"
     return re.search(pattern, username)
 def is_valid_email(email):
-    pattern = r"^[a-z0-9]+@[a-z]+\.(com|co\.id)$"
+    pattern = r"^[a-z]*[0-9]{2,}+@[a-z]+\.(com|co\.id)$"
     return re.search(pattern, email)
-
 def is_valid_password(password):
     pattern = r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$"
     return re.search(pattern, password)
@@ -16,7 +14,7 @@ if is_valid_username(username):
     if is_valid_email(email):
         password = input("Masukkan password: ")
         if is_valid_password(password):
-            print("\nRegistrasi berhasil! Selamat datang, " + username + "!")
+            print("\nRegistrasi berhasil! Halo, " + username)                                                                                                                                                                                                                                                                                                                                                                                                                                                          
         else:
             print("\nPassword yang kamu input berisiko dihack. Registrasi gagal.")
     else:

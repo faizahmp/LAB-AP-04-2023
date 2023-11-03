@@ -9,7 +9,7 @@ def cek_ip_address(input_string):
     if re.match(r"^[0-9a-fA-F:]+$", input_string):
         return "IPv6"
     return "Bukan IP Address"
-N = int(input("input="))
+N = int(input())
 input_strings = []
 for i in range(N):
     input_strings.append(input())
